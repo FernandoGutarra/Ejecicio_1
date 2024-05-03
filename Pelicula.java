@@ -35,7 +35,7 @@ public class Pelicula extends Item{
 
     @Override
     public boolean disponibleParaAlquilar() {
-        return cantCopias > 1;
+        return cantCopias >= 1;
     }
     @Override
     public boolean alquilar(){

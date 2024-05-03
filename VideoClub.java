@@ -27,12 +27,12 @@ public class VideoClub {
         c.desalquilar(a);
         System.out.println("Gracias Por Devolver El Item " + i);
     }
-    private static ArrayList<ArrayList<Alquiler>> buscarClientesConAlquileresVencidos(){
-        ArrayList<ArrayList<Alquiler>> alquileresVencidosDeUsuarios = new ArrayList<>();
+    private static ArrayList<Alquiler> buscarClientesConAlquileresVencidos(){
+        ArrayList<Alquiler> alquileresVencidosDeUsuarios = new ArrayList<>();
         for(Cliente c:clientes){
             ArrayList<Alquiler> alsVencidoCliente  =  c.alquileresVencidos();
             if(!alsVencidoCliente.isEmpty()){
-               alquileresVencidosDeUsuarios.add(alsVencidoCliente);
+               alquileresVencidosDeUsuarios.addAll(alsVencidoCliente);
             }
         }
         return alquileresVencidosDeUsuarios;
@@ -47,7 +47,7 @@ public class VideoClub {
         items.add(matrix);
         items.add(matrix2);
         clienteAlquilaItem(fernando,matrix,LocalDate.of(2022,06,01));
-        clienteAlquilaItem(pablo,matrix,LocalDate.of(2026,06,01));
+        clienteAlquilaItem(pablo,matrix,LocalDate.of(2020,06,01));
         System.out.println(buscarClientesConAlquileresVencidos());
         clienteDevuelveItem(fernando,fernando.getAlquileres().get(0));
         System.out.println(buscarClientesConAlquileresVencidos());
