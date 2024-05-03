@@ -21,7 +21,7 @@ public class Cliente {
 
     public String alquila(Item i, LocalDate fechaVencimiento){
         if(i.alquilar()){
-          this.alquileres.add(new Alquiler(i,fechaVencimiento));
+          this.alquileres.add(new Alquiler(this.getNombre(),i,fechaVencimiento));
           return "El Cliente " + this.getNombre() + " Alquilo Con Exito El Item " + i.getNombre() ;
         }else {
             return "Nose Pudo Alquilar El Item "+i.getNombre();
@@ -47,12 +47,13 @@ public class Cliente {
           this.alquileres.add(a);
     }
 
-    public boolean alquileresVencidos() {
+    public ArrayList<Alquiler> alquileresVencidos() {
+        ArrayList<Alquiler> alquileresVencidos = new ArrayList<>();
         for(Alquiler a:alquileres){
             if(a.estoyVencido()){
-               return true;
+                alquileresVencidos.add(a);
             }
         }
-        return false;
+        return alquileresVencidos;
     }
 }

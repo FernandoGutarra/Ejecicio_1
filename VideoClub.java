@@ -1,5 +1,6 @@
 package Ejercicio_1;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 /*
@@ -26,21 +27,15 @@ public class VideoClub {
         c.desalquilar(a);
         System.out.println("Gracias Por Devolver El Item " + i);
     }
-    private static ArrayList<Cliente> buscarClientesConAlquileresVencidos(){
-        ArrayList<Cliente> clientesVencidos = new ArrayList<>();
+    private static ArrayList<ArrayList<Alquiler>> buscarClientesConAlquileresVencidos(){
+        ArrayList<ArrayList<Alquiler>> alquileresVencidosDeUsuarios = new ArrayList<>();
         for(Cliente c:clientes){
-             if(c.alquileresVencidos()){
-                 clientesVencidos.add(c);
-             }
+            ArrayList<Alquiler> alsVencidoCliente  =  c.alquileresVencidos();
+            if(!alsVencidoCliente.isEmpty()){
+               alquileresVencidosDeUsuarios.add(alsVencidoCliente);
+            }
         }
-        return clientesVencidos;
-    }
-    public static void imprimirClientesConAlquileresVencidos(){
-        ArrayList<Cliente> clientesVencidos = buscarClientesConAlquileresVencidos();
-        System.out.println("Lista De Clientes Con Alquileres Vencidos:");
-        for(Cliente c : clientesVencidos){
-            System.out.println(c.getNombre());
-        }
+        return alquileresVencidosDeUsuarios;
     }
     public static void main(String [] args){
         Cliente fernando = new Cliente("Fernando");
@@ -53,8 +48,8 @@ public class VideoClub {
         items.add(matrix2);
         clienteAlquilaItem(fernando,matrix,LocalDate.of(2022,06,01));
         clienteAlquilaItem(pablo,matrix,LocalDate.of(2026,06,01));
-        imprimirClientesConAlquileresVencidos();
+        System.out.println(buscarClientesConAlquileresVencidos());
         clienteDevuelveItem(fernando,fernando.getAlquileres().get(0));
-        imprimirClientesConAlquileresVencidos();
+        System.out.println(buscarClientesConAlquileresVencidos());
     }
 }
